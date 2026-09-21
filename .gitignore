@@ -1,0 +1,11 @@
+.env
+*.pem
+__pycache__/
+node_modules/
+data/raw/*.zip
+data/raw/extracted/
+data/processed/records_clean.csv.gz
+paper/pg-*.jpg
+paper/*.pdf
+slides/project/
+slides/_render.html
