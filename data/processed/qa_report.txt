@@ -1,0 +1,75 @@
+QA REPORT — Retailer Churn and Food Access
+gap rule (V1): 365 days; exit years 2006-2024
+
+1. ROW COUNTS
+   records_raw                                        703,441
+   records_end_before_auth_dropped                         45
+   records_dropped_farmers_market_delivery_route       11,948
+   records_dropped_outside_50_states_dc                 1,240
+   records_kept                                       690,208
+   record_ids                                         649,325
+   store_spells                                       657,298
+   locations                                          424,118
+   location_spells                                    478,117
+PASS  records reconcile: raw - drops = kept
+PASS  records_clean.csv.gz row count = kept
+PASS  every Record ID has at least one store spell
+PASS  store spells account for every record
+PASS  location spells account for every record
+
+2. MATCH RATES
+   county by name               689,714
+   county imputed by ZIP            426
+   county unmatched                  68  (see county_crosswalk_unmatched.csv)
+PASS  county match rate 99.9901% > 99.9%
+   records keyed by record ID (no street address): 4,215
+   SRAM: 84,119 tracts, 3,143 counties, 51 states+DC, population 331,449,281
+PASS  SRAM population equals 2020 Census resident population (331,449,281)
+   counties with a SNAP stock in the panel: 3,126 of 3,143
+
+3. DATA FEATURES THAT SHAPE INTERPRETATION
+   authorization date 1 Jan 1930 (placeholder, pre-period): 6,666 records
+   end dates shared by >= 1,000 records nationally (administrative batch dates): 52
+   records ending on a batch date: 114,933 of 445,119 ended records (25.8%)
+   Record IDs with more than one authorization spell: 36,990
+PASS  store type constant within Record ID
+
+4. RANGE CHECKS
+   E0 record    exit rate 0.072-0.130; entry rate 0.071-0.217; stock 157,416-249,888
+PASS  E0 record: annual rates in [0, 0.5]
+   E1 store     exit rate 0.064-0.125; entry rate 0.066-0.213; stock 157,611-250,085
+PASS  E1 store: annual rates in [0, 0.5]
+   E2 location  exit rate 0.033-0.076; entry rate 0.036-0.170; stock 156,344-247,911
+PASS  E2 location: annual rates in [0, 0.5]
+PASS  ordering holds every year: E0 >= E1 >= E2 exit rates
+PASS  county poverty rates in [0, 100]
+PASS  county LILA population shares in [0, 1]
+
+5. NAMED SPOT CHECKS — look each up by hand (V4)
+   In the historical CSV (Excel filter on Record ID) and, for open records, the live Retailer Locator
+   https://www.fns.usda.gov/snap/retailer-locator
+   -- easy: open large store, Tennessee: Record ID 1022007
+      Kroger 419                             Super Store                TN FIPS 47157  2011-09-06 -> open
+      store spells after gap rule: 1
+   -- closed convenience store, Rutherford County TN (Murfreesboro): Record ID 1004135
+      ELPAISANO                              Convenience Store          TN FIPS 47149  2011-05-26 -> 2012-07-12
+      store spells after gap rule: 1
+   -- hard: three authorization spells, same Record ID: Record ID 1000667
+      Seven Star                             Small Grocery Store        FL FIPS 12127  2011-06-01 -> 2017-11-29
+      Seven Star                             Small Grocery Store        FL FIPS 12127  2018-05-15 -> 2023-07-25
+      Seven Star                             Small Grocery Store        FL FIPS 12127  2024-08-05 -> open
+      store spells after gap rule: 2
+   -- placeholder 1930 authorization date: Record ID 225857
+      GRAND CENTRAL MARKET INC               Supermarket                MA FIPS 25005  1930-01-01 -> 2005-03-02
+      store spells after gap rule: 1
+   -- record ending on an administrative batch date: Record ID 1526890
+      Landmark Travel Center                 Convenience Store          TX FIPS 48059  2022-12-15 -> 2025-07-21
+      store spells after gap rule: 1
+   -- location succession: address key 2080|VALENTINE AVE|10457
+      671878   P.G. & SARA CORP                   2004-05-25 -> 2006-06-08
+      792145   EMIL DELI GROCERY INC              2006-08-31 -> 2013-11-21
+      1184953  Los Palmaritos Deli Grocery Corp   2015-04-22 -> 2016-08-06
+      1484882  2080 Valentine Deli Grocery Corp   2022-09-29 -> open
+      location spells: 3
+
+RESULT: ALL HARD CHECKS PASS
