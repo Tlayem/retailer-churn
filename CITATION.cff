@@ -10,6 +10,8 @@ authors:
     orcid: "https://orcid.org/0000-0002-2023-3624"
     affiliation: "Middle Tennessee State University"
 license: MIT
+doi: "10.5281/zenodo.22884651"
+url: "https://doi.org/10.5281/zenodo.22884651"
 repository-code: "https://github.com/Tlayem/retailer-churn"
 keywords:
   - food access

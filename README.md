@@ -1,6 +1,7 @@
 # Retailer Churn and Food Access
 
-**Version 0.1.0 — working paper, September 2026.**
+**Version 0.1.0 — working paper, September 2026.**  
+DOI: [10.5281/zenodo.22884651](https://doi.org/10.5281/zenodo.22884651)
 
 Replication package for the working paper *Retailer Churn and Food Access* (Adesiyan, September 2026),
 with the paper, a slide presentation, and every processed file needed to reproduce its numbers.
@@ -58,6 +59,6 @@ administrative batch dates, the continuity window is a judgment, and the analysi
 ## License and citation
 
 Code under [MIT](LICENSE). Data, figures, the paper and other documents under [CC BY 4.0](LICENSE-DATA),
-with attribution to USDA FNS and ERS as sources. Cite as in `CITATION.cff`: Adesiyan, T. F. (2026). *Retailer Churn and Food Access* (Version 0.1.0).
+with attribution to USDA FNS and ERS as sources. Cite as in `CITATION.cff`: Adesiyan, T. F. (2026). *Retailer Churn and Food Access* (Version 0.1.0). Working paper. Zenodo. https://doi.org/10.5281/zenodo.22884651
 
 Maintainer: Taiwo Adesiyan, Middle Tennessee State University · adesiyanfausiyat010@gmail.com · ORCID 0000-0002-2023-3624

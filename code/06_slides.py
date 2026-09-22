@@ -409,7 +409,7 @@ sec("references", f"""
 """)
 
 # ------------------------------------------------------------------ 20 thanks
-repo = "Code, data and QA report: github.com/Tlayem/retailer-churn" if FINAL else "Code, data and QA report: [VERIFY: repository link and DOI after release]"
+repo = "Code, data and QA report: github.com/Tlayem/retailer-churn · doi.org/10.5281/zenodo.22884651" if FINAL else "Code, data and QA report: [VERIFY: repository link and DOI after release]"
 sec("thanks", f"""
 <div style="flex:1"></div>
 <h2 style="font-family:{HEAD}; font-size:88px; font-weight:600; color:{LIGHT}">Thank you</h2>

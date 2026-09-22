@@ -199,7 +199,7 @@ body.push(P(`Twenty years of SNAP retailer records show a stock of stores that t
 
 // Declarations
 body.push(H1("Data and code availability"));
-body.push(P(`All data used in this paper are publicly available from the U.S. Department of Agriculture (USDA FNS 2026a; USDA ERS 2026). The code and processed data needed to reproduce every table and figure are available at https://github.com/Tlayem/retailer-churn and archived on Zenodo; the DOI is listed in the repository.`, { align: AlignmentType.LEFT }));
+body.push(P(`All data used in this paper are publicly available from the U.S. Department of Agriculture (USDA FNS 2026a; USDA ERS 2026). The code and processed data needed to reproduce every table and figure are available at https://github.com/Tlayem/retailer-churn and archived on Zenodo (https://doi.org/10.5281/zenodo.22884651).`, { align: AlignmentType.LEFT }));
 // References
 body.push(H1("References"));
 const refs = [
